@@ -46,12 +46,12 @@ public class TweetTest
     // @GET("/api/tweeters/{id}/tweets/{tweetId}")
     // Call<Tweet> getTweet(@Path("id") String id, @Path("id") String tweetId);
     // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
     String tweeterId = "A";
     String tweetId = "B";
     Tweet tweetImage = service.getTweet(tweeterId, tweetId);
     assertEquals(tweetImage, tweet);
    
-     
   }
 
 }
