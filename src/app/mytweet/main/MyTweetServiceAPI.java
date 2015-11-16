@@ -1,9 +1,12 @@
 package app.mytweet.main;
 
+import java.util.List;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import app.mytweet.models.Tweet;
+import app.mytweet.models.Tweeter;
 import retrofit.Call;
 import retrofit.GsonConverterFactory;
 import retrofit.Response;
@@ -24,49 +27,74 @@ public class MyTweetServiceAPI
                              .build();
     service = retrofit.create(MyTweetServiceProxy.class);
   }
-  
-  public Tweet createTweet(Tweet newTweet) throws Exception
+
+  public List<Tweeter> getAllTweeters() throws Exception
   {
-    Call<Tweet> call = (Call<Tweet>) service.createTweet(newTweet);
+    Call<List<Tweeter>> call = (Call<List<Tweeter>>) service.getAllTweeters();
+    Response<List<Tweeter>> donors = call.execute();
+    return donors.body();
+  }
+
+  public Tweeter getTweeter(String id) throws Exception
+  {
+    Call<Tweeter> call = (Call<Tweeter>) service.getTweeter(id);
+    Response<Tweeter> donors = call.execute();
+    return donors.body();
+  }
+
+  public int deleteTweeter(String id) throws Exception
+  {
+    Call<Tweeter> call = service.deleteTweeter(id);
+    Response<Tweeter> val = call.execute();
+    return val.code();
+  }
+
+  public int deleteAllTweeters() throws Exception
+  {
+    Call<String> call = service.deleteAllTweeters();
+    Response<String> val = call.execute();
+    return val.code();
+  }
+
+  public Tweeter createTweeter(Tweeter newTweeter) throws Exception
+  {
+    Call<Tweeter> call = (Call<Tweeter>) service.createTweeter(newTweeter);
+    Response<Tweeter> returnedTweeter = call.execute();
+    return returnedTweeter.body();
+  }
+
+  public List<Tweet> getAllTweets() throws Exception
+  {
+    Call<List<Tweet>> call = (Call<List<Tweet>>) service.getAllTweets();
+    Response<List<Tweet>> donations = call.execute();
+    return donations.body();
+  }
+
+  public List<Tweet> getTweets(String id) throws Exception
+  {
+    Call<List<Tweet>> call = (Call<List<Tweet>>) service.getTweets(id);
+    Response<List<Tweet>> donations = call.execute();
+    return donations.body();
+  }
+  
+  public Tweet createTweet(String id, Tweet newTweet) throws Exception
+  {
+    Call<Tweet> call = (Call<Tweet>) service.createTweet(id, newTweet);
     Response<Tweet> returnedTweet = call.execute();
     return returnedTweet.body();
   }
+
+  public int deleteTweet(String id, String donationId) throws Exception
+  {
+    Call<Tweet> call = service.deleteTweet(id, donationId);
+    Response<Tweet> val = call.execute();
+    return val.code();
+  }
+
+  public int deleteAllTweets() throws Exception
+  {
+    Call<String> call = service.deleteAllTweets();
+    Response<String> val = call.execute();
+    return val.code();
+  }
 }
-
-
-/*import java.util.List;
-
-import app.model.Tweet;
-
-public class MyTweetServiceAPI
-{ 
-  public static List<Tweet> getTweets() throws Exception
-  {
-    String response =  Rest.get("/api/tweets");
-    List<Tweet> tweetList = JsonParsers.json2Tweets(response);
-    return tweetList;
-  }
-
-  public static Tweet getTweet(Long id) throws Exception
-  {
-    String response =  Rest.get("/api/tweets/" + id);
-    Tweet tweet = JsonParsers.json2Tweet(response);
-    return tweet;
-  }
-
-  public static Tweet createTweet(Tweet tweet) throws Exception
-  {
-    String response = Rest.post ("/api/tweets", JsonParsers.tweet2Json(tweet));
-    return JsonParsers.json2Tweet(response);
-  }
-
-  public static void deleteTweet(Long id) throws Exception
-  {
-    Rest.delete ("/api/tweets/" + id);
-  }  
-  
-  public static void deleteAllTweets() throws Exception
-  {
-    Rest.delete ("/api/tweets");
-  } 
-}*/

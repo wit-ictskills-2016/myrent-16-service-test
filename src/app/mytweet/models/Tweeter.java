@@ -6,20 +6,20 @@ import com.google.common.base.Objects;
 
 import static com.google.common.base.Objects.toStringHelper;
 
-public class User 
+public class Tweeter 
 {
-  public UUID uuid;
+  public String id;
   public String firstName;
   public String lastName;
   public String email;
   public String password;
  
-  public User()
+  public Tweeter()
   {}
   
-  public User(String firstName, String lastName, String email, String password)
+  public Tweeter(String firstName, String lastName, String email, String password)
   {
-    this.uuid      = UUID.randomUUID();
+    this.id        = UUID.randomUUID().toString();
     this.firstName = firstName;
     this.lastName  = lastName;
     this.email     = email;
@@ -29,10 +29,11 @@ public class User
   @Override
   public boolean equals(final Object obj)
   {
-    if (obj instanceof User)
+    if (obj instanceof Tweeter)
     {
-      final User other = (User) obj;
-      return Objects.equal(firstName,  other.firstName) 
+      final Tweeter other = (Tweeter) obj;
+      return Objects.equal(id,  other.id)
+          && Objects.equal(firstName,  other.firstName) 
           && Objects.equal(lastName,   other.lastName)
           && Objects.equal(email,      other.email)
           && Objects.equal(password,   other.password);                               

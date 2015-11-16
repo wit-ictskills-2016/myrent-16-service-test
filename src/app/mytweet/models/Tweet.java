@@ -14,7 +14,6 @@ public class Tweet
   public String count;
   public String datestamp;
 
-  public User user;
 
   public Tweet()
   {
