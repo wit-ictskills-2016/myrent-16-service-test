@@ -61,10 +61,10 @@ public interface MyTweetServiceProxy
 
   @GET("/api/tweeters/{id}/tweets")
   Call<List<Tweet>> getTweets(@Path("id") String id);
-
+  // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
   @GET("/api/tweeters/{id}/tweets/{tweetId}")
   Call<Tweet> getTweet(@Path("id") String id, @Path("id") String tweetId);
-
+  // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
   @POST("/api/tweeters/{id}/tweets")
   Call<Tweet> createTweet(@Path("id") String id, @Body Tweet tweet);
 
