@@ -31,15 +31,15 @@ public class MyTweetServiceAPI
   public List<Tweeter> getAllTweeters() throws Exception
   {
     Call<List<Tweeter>> call = (Call<List<Tweeter>>) service.getAllTweeters();
-    Response<List<Tweeter>> donors = call.execute();
-    return donors.body();
+    Response<List<Tweeter>> tweeters = call.execute();
+    return tweeters.body();
   }
 
   public Tweeter getTweeter(String id) throws Exception
   {
     Call<Tweeter> call = (Call<Tweeter>) service.getTweeter(id);
-    Response<Tweeter> donors = call.execute();
-    return donors.body();
+    Response<Tweeter> tweeters = call.execute();
+    return tweeters.body();
   }
 
   public int deleteTweeter(String id) throws Exception
@@ -70,6 +70,13 @@ public class MyTweetServiceAPI
     return donations.body();
   }
 
+  public Tweet getTweet(String tweeterId, String tweetId) throws Exception
+  {
+    Call<Tweet> call = (Call<Tweet>) service.getTweet(tweeterId, tweetId);
+    Response<Tweet> tweet = call.execute();
+    return tweet.body(); 
+    
+  }
   public List<Tweet> getTweets(String id) throws Exception
   {
     Call<List<Tweet>> call = (Call<List<Tweet>>) service.getTweets(id);

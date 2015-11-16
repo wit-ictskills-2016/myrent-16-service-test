@@ -9,6 +9,9 @@ import org.junit.Test;
 import app.mytweet.main.MyTweetServiceAPI;
 import app.mytweet.models.Tweet;
 import app.mytweet.models.Tweeter;
+import retrofit.Call;
+import retrofit.http.GET;
+import retrofit.http.Path;
 
 
 public class TweetTest
@@ -23,10 +26,11 @@ public class TweetTest
     Tweet returnedTweet = service.createTweet(tweet.id, tweet);
     assertEquals(tweet, returnedTweet);
     
+
     Tweeter tweeter = new Tweeter("John", "Doe", "john@doe.com", "secret");
     Tweeter returnedTweeter = service.createTweeter(tweeter);
     assertEquals(tweeter, returnedTweeter);
-    
+       
     Tweeter tweeter2 = new Tweeter("John", "Doe", "john@doe.com", "secret");
     Tweeter returnedTweeter2 = service.createTweeter(tweeter2);
     assertEquals(tweeter2, returnedTweeter2);
@@ -36,6 +40,17 @@ public class TweetTest
     
     List<Tweeter> tweeters = service.getAllTweeters();
     System.out.println("Number tweeters " + tweeters.size());
+    
+    
+    // @GET("/api/tweeters/{id}/tweets/{tweetId}")
+    // Call<Tweet> getTweet(@Path("id") String id, @Path("id") String tweetId);
+    // GET     /api/tweeters/{id}/tweets/{tweetId}        TweetsAPI.getTweet
+    String tweeterId = "A";
+    String tweetId = "B";
+    Tweet tweetImage = service.getTweet(tweeterId, tweetId);
+    assertEquals(tweetImage, tweet);
+   
+     
   }
 
 }
