@@ -1,17 +1,11 @@
 package app.test;
 
 import static org.junit.Assert.*;
-
 import java.util.List;
-
 import org.junit.Test;
-
 import app.main.TweetServiceAPI;
 import app.models.Tweet;
 import app.models.Tweeter;
-import retrofit.Call;
-import retrofit.http.GET;
-import retrofit.http.Path;
 
 
 public class TweetTest

@@ -4,8 +4,6 @@ import java.util.UUID;
 
 import com.google.common.base.Objects;
 
-import static com.google.common.base.Objects.toStringHelper;
-
 public class Tweeter 
 {
   public String id;

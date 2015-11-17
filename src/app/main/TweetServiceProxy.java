@@ -20,7 +20,6 @@ import java.util.List;
 import app.models.Tweet;
 import app.models.Tweeter;
 import retrofit.Call;
-import retrofit.Callback;
 import retrofit.http.Body;
 import retrofit.http.DELETE;
 import retrofit.http.GET;
