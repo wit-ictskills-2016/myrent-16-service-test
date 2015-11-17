@@ -1,23 +1,23 @@
-package app.mytweet.main;
+package app.main;
 
 import java.util.List;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import app.mytweet.models.Tweet;
-import app.mytweet.models.Tweeter;
+import app.models.Tweet;
+import app.models.Tweeter;
 import retrofit.Call;
 import retrofit.GsonConverterFactory;
 import retrofit.Response;
 import retrofit.Retrofit;
 
-public class MyTweetServiceAPI
+public class TweetServiceAPI
 {
   private String service_url = "http://localhost:9000";
-  private MyTweetServiceProxy service;
+  private TweetServiceProxy service;
 
-  public MyTweetServiceAPI()
+  public TweetServiceAPI()
   {
     Gson gson = new GsonBuilder().create();
 
@@ -25,7 +25,7 @@ public class MyTweetServiceAPI
                              .addConverterFactory(GsonConverterFactory
                              .create(gson))
                              .build();
-    service = retrofit.create(MyTweetServiceProxy.class);
+    service = retrofit.create(TweetServiceProxy.class);
   }
 
   public List<Tweeter> getAllTweeters() throws Exception

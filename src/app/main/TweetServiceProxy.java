@@ -13,12 +13,12 @@
 //}
 
 
-package app.mytweet.main;
+package app.main;
 
 import java.util.List;
 
-import app.mytweet.models.Tweet;
-import app.mytweet.models.Tweeter;
+import app.models.Tweet;
+import app.models.Tweeter;
 import retrofit.Call;
 import retrofit.Callback;
 import retrofit.http.Body;
@@ -27,7 +27,7 @@ import retrofit.http.GET;
 import retrofit.http.POST;
 import retrofit.http.Path;
 
-public interface MyTweetServiceProxy
+public interface TweetServiceProxy
 {
 //  @POST("/api/tweets")
 //  Call<Tweet> createTweet(@Body Tweet tweet);

@@ -1,4 +1,4 @@
-package app.mytweet.models;
+package app.models;
 
 import java.util.UUID;
 
