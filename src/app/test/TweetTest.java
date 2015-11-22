@@ -1,8 +1,12 @@
 package app.test;
 
 import static org.junit.Assert.*;
+
+import java.util.Date;
 import java.util.List;
+
 import org.junit.Test;
+
 import app.main.TweetServiceAPI;
 import app.models.Tweet;
 import app.models.Tweeter;
@@ -16,10 +20,11 @@ public class TweetTest
   public void test() throws Exception
   {
 
-    Tweet tweet = new Tweet("tweet-5", "5", "November 16th 10.00 hours");
+    Tweet tweet = new Tweet("tweet-5", "5");
     Tweet returnedTweet = service.createTweet(tweet.id, tweet);
     assertEquals(tweet, returnedTweet);
     
+    System.out.println(tweet.datestamp);
 
     Tweeter tweeter = new Tweeter("John", "Doe", "john@doe.com", "secret");
     Tweeter returnedTweeter = service.createTweeter(tweeter);
@@ -41,10 +46,10 @@ public class TweetTest
     // Call<Tweet> getTweet(@Path("id") String id, @Path("id") String tweetId);
     // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
-    String tweeterId = "A";
-    String tweetId = "B";
-    Tweet tweetImage = service.getTweet(tweeterId, tweetId);
-    assertEquals(tweetImage, tweet);
+//    String tweeterId = "A";
+//    String tweetId = "B";
+//    Tweet tweetImage = service.getTweet(tweeterId, tweetId);
+//    assertEquals(tweetImage, tweet);
    
   }
 

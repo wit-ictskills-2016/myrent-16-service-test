@@ -1,5 +1,6 @@
 package app.models;
 
+import java.util.Date;
 import java.util.UUID;
 
 import com.google.common.base.Objects;
@@ -10,19 +11,19 @@ public class Tweet
   public String id;
   public String message;
   public String count;
-  public String datestamp;
+  public Long   datestamp;
 
 
   public Tweet()
   {
   }
 
-  public Tweet(String message, String count, String datestamp)
+  public Tweet(String message, String count)
   {
     this.id = UUID.randomUUID().toString();
     this.message = message;
     this.count = count;
-    this.datestamp = datestamp;
+    this.datestamp = new Date().getTime();
   }
 
   @Override
