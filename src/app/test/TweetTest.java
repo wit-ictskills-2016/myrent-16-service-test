@@ -2,9 +2,7 @@ package app.test;
 
 import static org.junit.Assert.*;
 
-import java.util.Date;
 import java.util.List;
-
 import org.junit.Test;
 
 import app.main.TweetServiceAPI;
@@ -39,7 +37,6 @@ public class TweetTest
     
     List<Tweeter> tweeters = service.getAllTweeters();
     System.out.println("Number tweeters " + tweeters.size());
-    
     
     // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     // @GET("/api/tweeters/{id}/tweets/{tweetId}")
