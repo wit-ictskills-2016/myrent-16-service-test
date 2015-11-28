@@ -21,22 +21,22 @@ public class TweetTest
     Tweet tweet = new Tweet("tweet-5", "5");
     Tweet returnedTweet = service.createTweet(tweet.id, tweet);
     assertEquals(tweet, returnedTweet);
-    
-    System.out.println(tweet.datestamp);
-
-    Tweeter tweeter = new Tweeter("John", "Doe", "john@doe.com", "secret");
-    Tweeter returnedTweeter = service.createTweeter(tweeter);
-    assertEquals(tweeter, returnedTweeter);
-       
-    Tweeter tweeter2 = new Tweeter("John", "Doe", "john@doe.com", "secret");
-    Tweeter returnedTweeter2 = service.createTweeter(tweeter2);
-    assertEquals(tweeter2, returnedTweeter2);
-    
-    List<Tweet> tweets = service.getAllTweets();
-    System.out.println("Number tweets " + tweets.size());
-    
-    List<Tweeter> tweeters = service.getAllTweeters();
-    System.out.println("Number tweeters " + tweeters.size());
+//    
+//    System.out.println(tweet.datestamp);
+//
+//    Tweeter tweeter = new Tweeter("John", "Doe", "john@doe.com", "secret");
+//    Tweeter returnedTweeter = service.createTweeter(tweeter);
+//    assertEquals(tweeter, returnedTweeter);
+//       
+//    Tweeter tweeter2 = new Tweeter("John", "Doe", "john@doe.com", "secret");
+//    Tweeter returnedTweeter2 = service.createTweeter(tweeter2);
+//    assertEquals(tweeter2, returnedTweeter2);
+//    
+//    List<Tweet> tweets = service.getAllTweets();
+//    System.out.println("Number tweets " + tweets.size());
+//    
+//    List<Tweeter> tweeters = service.getAllTweeters();
+//    System.out.println("Number tweeters " + tweeters.size());
     
     // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
     // @GET("/api/tweeters/{id}/tweets/{tweetId}")
