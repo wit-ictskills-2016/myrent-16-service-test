@@ -13,7 +13,9 @@ public class Tweeter
   public String password;
  
   public Tweeter()
-  {}
+  {
+    this.id = UUID.randomUUID().toString();
+  }
   
   public Tweeter(String firstName, String lastName, String email, String password)
   {

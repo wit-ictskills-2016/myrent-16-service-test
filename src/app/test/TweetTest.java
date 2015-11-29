@@ -18,10 +18,24 @@ public class TweetTest
   public void test() throws Exception
   {
 
+    Tweeter tweeter = new Tweeter("Barney", "Gumble", "barney@gumble.com", "secret");
+    service.createTweeter(tweeter);
+    
     Tweet tweet = new Tweet("tweet-5", "5");
-    Tweet returnedTweet = service.createTweet(tweet.id, tweet);
+    Tweet returnedTweet = service.createTweet(tweeter.id, tweet);
     assertEquals(tweet, returnedTweet);
-//    
+
+    //List<Tweeter> tweeters = service.getAllTweeters();
+    //System.out.println("Number tweeters " + tweeters.size());
+    
+//    int result = service.deleteAllTweets();
+//    assertEquals(result, 200);
+//    System.out.println("deleteAllTweets result: " + result);
+    
+//    List<Tweet> tweetsDeleted = service.getAllTweets();
+//    assertEquals(tweetsDeleted.size(), 0);
+//    System.out.println("Number tweeters " + tweetsDeleted.size());
+    
 //    System.out.println(tweet.datestamp);
 //
 //    Tweeter tweeter = new Tweeter("John", "Doe", "john@doe.com", "secret");

@@ -12,10 +12,11 @@ public class Tweet
   public String message;
   public String count;
   public Long   datestamp;
-
+  
 
   public Tweet()
   {
+    this.id = UUID.randomUUID().toString();
   }
 
   public Tweet(String message, String count)
