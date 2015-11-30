@@ -19,12 +19,13 @@ public class TweetTest
   {
 
     Tweeter tweeter = new Tweeter("Barney", "Gumble", "barney@gumble.com", "secret");
-    service.createTweeter(tweeter);
+    Tweeter returnedTweeter = service.createTweeter(tweeter);
+    assertEquals(tweeter, returnedTweeter);
+ 
+    Tweeter tweeter2 = new Tweeter("Homer", "Simpson", "homer@simpson.com", "secret");
+    Tweeter returnedTweeter2 = service.createTweeter(tweeter2);
+    assertEquals(tweeter2, returnedTweeter2);
     
-    Tweet tweet = new Tweet("tweet-5", "5");
-    Tweet returnedTweet = service.createTweet(tweeter.id, tweet);
-    assertEquals(tweet, returnedTweet);
-
     //List<Tweeter> tweeters = service.getAllTweeters();
     //System.out.println("Number tweeters " + tweeters.size());
     
