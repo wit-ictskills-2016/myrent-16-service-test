@@ -1,4 +1,4 @@
-package app.models;
+  package app.models;
 
 import java.util.Date;
 import java.util.UUID;
@@ -10,7 +10,6 @@ public class Tweet
 
   public String id;
   public String message;
-  public String count;
   public Long   datestamp;
   
 
@@ -19,11 +18,10 @@ public class Tweet
     this.id = UUID.randomUUID().toString();
   }
 
-  public Tweet(String message, String count)
+  public Tweet(String message)
   {
     this.id = UUID.randomUUID().toString();
     this.message = message;
-    this.count = count;
     this.datestamp = new Date().getTime();
   }
 
@@ -33,9 +31,8 @@ public class Tweet
     if (obj instanceof Tweet)
     {
       final Tweet other = (Tweet) obj;
-      return Objects.equal(id, other.id) 
-          && Objects.equal(message, other.message) 
-          && Objects.equal(count, other.count)
+      return Objects.equal(id,        other.id) 
+          && Objects.equal(message,   other.message) 
           && Objects.equal(datestamp, other.datestamp);
     }
     else

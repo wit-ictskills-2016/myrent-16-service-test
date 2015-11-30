@@ -91,10 +91,10 @@ public class TweetServiceAPI
     return returnedTweet.body();
   }
 
-  public int deleteTweet(String id, String donationId) throws Exception
+  public int deleteTweet(String id, String tweetId) throws Exception
   {
-    Call<Tweet> call = service.deleteTweet(id, donationId);
-    Response<Tweet> val = call.execute();
+    Call<String> call = service.deleteTweet(id, tweetId);
+    Response<String> val = call.execute();
     return val.code();
   }
 

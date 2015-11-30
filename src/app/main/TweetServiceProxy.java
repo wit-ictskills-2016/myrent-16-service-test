@@ -60,13 +60,13 @@ public interface TweetServiceProxy
 
   @GET("/api/tweeters/{id}/tweets")
   Call<List<Tweet>> getTweets(@Path("id") String id);
-  // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+  
   @GET("/api/tweeters/{id}/tweets/{tweetId}")
   Call<Tweet> getTweet(@Path("id") String id, @Path("tweetId") String tweetId);
-  // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
   @POST("/api/tweeters/{id}/tweets")
   Call<Tweet> createTweet(@Path("id") String id, @Body Tweet tweet);
 
   @DELETE("/api/tweeters/{id}/tweets/{tweetId}")
-  Call<Tweet> deleteTweet(@Path("id") String id, @Path("id") String tweetId);
+  Call<String> deleteTweet(@Path("id") String id, @Path("tweetId") String tweetId);
 }

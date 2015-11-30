@@ -32,7 +32,7 @@ public class Tweeter
     if (obj instanceof Tweeter)
     {
       final Tweeter other = (Tweeter) obj;
-      return Objects.equal(id,  other.id)
+      return Objects.equal(id,         other.id)
           && Objects.equal(firstName,  other.firstName) 
           && Objects.equal(lastName,   other.lastName)
           && Objects.equal(email,      other.email)
