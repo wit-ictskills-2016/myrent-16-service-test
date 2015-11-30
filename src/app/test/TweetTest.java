@@ -26,8 +26,8 @@ public class TweetTest
     Tweeter returnedTweeter2 = service.createTweeter(tweeter2);
     assertEquals(tweeter2, returnedTweeter2);
     
-    //List<Tweeter> tweeters = service.getAllTweeters();
-    //System.out.println("Number tweeters " + tweeters.size());
+    List<Tweeter> tweeters = service.getAllTweeters();
+    System.out.println("Number tweeters " + tweeters.size());
     
 //    int result = service.deleteAllTweets();
 //    assertEquals(result, 200);
