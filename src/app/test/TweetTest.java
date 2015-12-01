@@ -24,10 +24,10 @@ DELETE  /api/tweeters/{id}                         TweetersAPI.deleteTweeter    
 DELETE  /api/tweeters                              TweetersAPI.deleteAllTweeters  [ok]
 
 # Tweet
-GET     /api/tweets                                TweetsAPI.getAllTweets
+GET     /api/tweets                                TweetsAPI.getAllTweets         [ok]
 DELETE  /api/tweets                                TweetsAPI.deleteAllTweets      [ok]
-GET     /api/tweeters/{id}/tweets                  TweetsAPI.getTweets
-GET     /api/tweeters/{id}/tweets/{tweetId}        TweetsAPI.getTweet
+GET     /api/tweeters/{id}/tweets                  TweetsAPI.getTweets            [0k]
+GET     /api/tweeters/{id}/tweets/{tweetId}        TweetsAPI.getTweet             [0k]
 POST    /api/tweeters/{id}/tweets                  TweetsAPI.createTweet          [ok]
 DELETE  /api/tweeters/{id}/tweets/{tweetId}        TweetsAPI.deleteTweet          [ok]
 */
@@ -88,13 +88,14 @@ public class TweetTest
     service.deleteAllTweets();
   }
   
-// @Test
+@Test
   public void getAllTweeters() throws Exception
   {    
     List<Tweeter> tweeters = service.getAllTweeters();
     assertEquals(tweeters.size(), NUMBER_TWEETERS);
   }
- //@Test
+ 
+@Test
  public void getAllTweets() throws Exception
  {
    List<Tweet> tweets = service.getAllTweets();
@@ -128,40 +129,26 @@ public class TweetTest
     Tweeter tweeter = service.getTweeter(tweeters[0].id);
     assertEquals(tweeter, tweeters[0]);
   }
-//    int result = service.deleteAllTweets();
-//    assertEquals(result, 200);
-//    System.out.println("deleteAllTweets result: " + result);
-    
-//    List<Tweet> tweetsDeleted = service.getAllTweets();
-//    assertEquals(tweetsDeleted.size(), 0);
-//    System.out.println("Number tweeters " + tweetsDeleted.size());
-    
-//    System.out.println(tweet.datestamp);
-//
-//    Tweeter tweeter = new Tweeter("John", "Doe", "john@doe.com", "secret");
-//    Tweeter returnedTweeter = service.createTweeter(tweeter);
-//    assertEquals(tweeter, returnedTweeter);
-//       
-//    Tweeter tweeter2 = new Tweeter("John", "Doe", "john@doe.com", "secret");
-//    Tweeter returnedTweeter2 = service.createTweeter(tweeter2);
-//    assertEquals(tweeter2, returnedTweeter2);
-//    
-//    List<Tweet> tweets = service.getAllTweets();
-//    System.out.println("Number tweets " + tweets.size());
-//    
-//    List<Tweeter> tweeters = service.getAllTweeters();
-//    System.out.println("Number tweeters " + tweeters.size());
-    
-    // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    // @GET("/api/tweeters/{id}/tweets/{tweetId}")
-    // Call<Tweet> getTweet(@Path("id") String id, @Path("id") String tweetId);
-    // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-//    String tweeterId = "A";
-//    String tweetId = "B";
-//    Tweet tweetImage = service.getTweet(tweeterId, tweetId);
-//    assertEquals(tweetImage, tweet);
-   
- // }
+  
+  // GET     /api/tweeters/{id}/tweets   TweetsAPI.getTweets
+  @Test
+  public void getTweets() throws Exception
+  {
+    String tweeterId = tweeters[1].id;
+    List<Tweet> tweets = service.getTweets(tweeterId);
+    assertEquals(tweets.size(), 2);
+  }
+  
+  // service.createTweet(tweeters[2].id, tweets[4]); 
+  // service.createTweet(tweeters[2].id, tweets[5]); 
+  // GET     /api/tweeters/{id}/tweets/{tweetId}        TweetsAPI.getTweet
+  @Test
+  public void getTweet() throws Exception
+  {
+    String tweeterId = tweeters[2].id;
+    String tweetId = tweets[5].id;
+    Tweet tweet = service.getTweet(tweeterId, tweetId);
+    assertEquals(tweets[5], tweet);
+  }
 
 }

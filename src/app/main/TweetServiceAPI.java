@@ -66,8 +66,8 @@ public class TweetServiceAPI
   public List<Tweet> getAllTweets() throws Exception
   {
     Call<List<Tweet>> call = (Call<List<Tweet>>) service.getAllTweets();
-    Response<List<Tweet>> donations = call.execute();
-    return donations.body();
+    Response<List<Tweet>> tweets = call.execute();
+    return tweets.body();
   }
 
   public Tweet getTweet(String tweeterId, String tweetId) throws Exception
@@ -80,8 +80,8 @@ public class TweetServiceAPI
   public List<Tweet> getTweets(String id) throws Exception
   {
     Call<List<Tweet>> call = (Call<List<Tweet>>) service.getTweets(id);
-    Response<List<Tweet>> donations = call.execute();
-    return donations.body();
+    Response<List<Tweet>> tweets = call.execute();
+    return tweets.body();
   }
   
   public Tweet createTweet(String id, Tweet newTweet) throws Exception
