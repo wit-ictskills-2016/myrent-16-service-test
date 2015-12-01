@@ -28,12 +28,7 @@ import retrofit.http.Path;
 
 public interface TweetServiceProxy
 {
-//  @POST("/api/tweets")
-//  Call<Tweet> createTweet(@Body Tweet tweet);
-//
-//  @POST("/api/tweeter")
-//  Call<Tweeter> createTweeter(@Body Tweeter tweeter);
-//
+
 //  @POST("/api/tweeter/login")
 //  Call<Tweeter> login (@Body Tweeter tweeter);
 

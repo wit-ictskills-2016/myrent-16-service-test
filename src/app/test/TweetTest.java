@@ -15,22 +15,23 @@ import app.models.Tweeter;
 
 
 /**
-List of api methods to test
+Complete list api methods tested
 # Tweeter (the user)
-GET     /api/tweeters                              TweetersAPI.getAllTweeters     [ok]
-GET     /api/tweeters/{id}                         TweetersAPI.getTweeter         [ok]
-POST    /api/tweeters                              TweetersAPI.createTweeter      [ok]
-DELETE  /api/tweeters/{id}                         TweetersAPI.deleteTweeter      [ok]
-DELETE  /api/tweeters                              TweetersAPI.deleteAllTweeters  [ok]
+GET     /api/tweeters                              TweetersAPI.getAllTweeters     
+GET     /api/tweeters/{id}                         TweetersAPI.getTweeter         
+POST    /api/tweeters                              TweetersAPI.createTweeter      
+DELETE  /api/tweeters/{id}                         TweetersAPI.deleteTweeter      
+DELETE  /api/tweeters                              TweetersAPI.deleteAllTweeters  
 
 # Tweet
-GET     /api/tweets                                TweetsAPI.getAllTweets         [ok]
-DELETE  /api/tweets                                TweetsAPI.deleteAllTweets      [ok]
-GET     /api/tweeters/{id}/tweets                  TweetsAPI.getTweets            [0k]
-GET     /api/tweeters/{id}/tweets/{tweetId}        TweetsAPI.getTweet             [0k]
-POST    /api/tweeters/{id}/tweets                  TweetsAPI.createTweet          [ok]
-DELETE  /api/tweeters/{id}/tweets/{tweetId}        TweetsAPI.deleteTweet          [ok]
+GET     /api/tweets                                TweetsAPI.getAllTweets         
+DELETE  /api/tweets                                TweetsAPI.deleteAllTweets      
+GET     /api/tweeters/{id}/tweets                  TweetsAPI.getTweets            
+GET     /api/tweeters/{id}/tweets/{tweetId}        TweetsAPI.getTweet             
+POST    /api/tweeters/{id}/tweets                  TweetsAPI.createTweet          
+DELETE  /api/tweeters/{id}/tweets/{tweetId}        TweetsAPI.deleteTweet          
 */
+
 public class TweetTest
 {
   private static TweetServiceAPI service = new TweetServiceAPI();
@@ -60,6 +61,10 @@ public class TweetTest
 
   };
   
+  /**
+   * POST /api/tweeters TweetersAPI.createTweeter POST /api/tweets
+   * TweetersAPI.createTweet
+   */
   @Before
   public void setup() throws Exception
   {
@@ -67,46 +72,54 @@ public class TweetTest
     {
       service.createTweeter(tweeter);
     }
- 
-    service.createTweet(tweeters[0].id, tweets[0]); 
-    service.createTweet(tweeters[0].id, tweets[1]); 
- 
-    service.createTweet(tweeters[1].id, tweets[2]); 
-    service.createTweet(tweeters[1].id, tweets[3]); 
 
-    service.createTweet(tweeters[2].id, tweets[4]); 
-    service.createTweet(tweeters[2].id, tweets[5]); 
-    
-    service.createTweet(tweeters[3].id, tweets[6]); 
-    service.createTweet(tweeters[3].id, tweets[7]); 
+    service.createTweet(tweeters[0].id, tweets[0]);
+    service.createTweet(tweeters[0].id, tweets[1]);
+
+    service.createTweet(tweeters[1].id, tweets[2]);
+    service.createTweet(tweeters[1].id, tweets[3]);
+
+    service.createTweet(tweeters[2].id, tweets[4]);
+    service.createTweet(tweeters[2].id, tweets[5]);
+
+    service.createTweet(tweeters[3].id, tweets[6]);
+    service.createTweet(tweeters[3].id, tweets[7]);
   }
- 
+
+  /**
+   * DELETE /api/tweets TweetsAPI.deleteAllTweets DELETE /api/tweeters
+   * TweetsAPI.deleteAllTweeterss
+   */
   @After
   public void teardown() throws Exception
   {
     service.deleteAllTweeters();
     service.deleteAllTweets();
   }
-  
-@Test
+
+  /**
+   * GET /api/tweeters TweetersAPI.getAllTweeters
+   */
+  @Test
   public void getAllTweeters() throws Exception
-  {    
+  {
     List<Tweeter> tweeters = service.getAllTweeters();
     assertEquals(tweeters.size(), NUMBER_TWEETERS);
   }
- 
-@Test
- public void getAllTweets() throws Exception
- {
-   List<Tweet> tweets = service.getAllTweets();
-   assertEquals(tweets.size(), NUMBER_TWEETS); 
- }
- 
- /**
-  * DELETE  /api/tweeters/{id}    TweetersAPI.deleteTweeter
-  * 
-  * service.createTweet(tweeters[0].id, tweets[0]); 
-  */
+
+  /**
+   * GET /api/tweets TweetsAPI.getAllTweets
+   */
+  @Test
+  public void getAllTweets() throws Exception
+  {
+    List<Tweet> tweets = service.getAllTweets();
+    assertEquals(tweets.size(), NUMBER_TWEETS);
+  }
+
+  /**
+   * DELETE /api/tweeters/{id} TweetersAPI.deleteTweeter
+   */
   @Test
   public void deleteTweet() throws Exception
   {
@@ -115,22 +128,30 @@ public class TweetTest
     int rval = service.deleteTweet(tweeterId, tweetId);
     assertEquals(rval, 200);
   }
-  
+
+  /**
+   * DELETE /api/tweeters/{id} TweetersAPI.deleteTweeter
+   */
   @Test
   public void deleteTweeter() throws Exception
   {
     int rval = service.deleteTweeter(tweeters[0].id);
-    assertEquals(rval, 200)
-;  }
-  
+    assertEquals(rval, 200);
+  }
+
+  /**
+   * GET /api/tweeters/{id} TweetersAPI.getTweeter
+   */
   @Test
   public void getTweeter() throws Exception
   {
     Tweeter tweeter = service.getTweeter(tweeters[0].id);
     assertEquals(tweeter, tweeters[0]);
   }
-  
-  // GET     /api/tweeters/{id}/tweets   TweetsAPI.getTweets
+
+  /**
+   * GET /api/tweeters/{id}/tweets TweetsAPI.getTweets
+   */
   @Test
   public void getTweets() throws Exception
   {
@@ -138,10 +159,10 @@ public class TweetTest
     List<Tweet> tweets = service.getTweets(tweeterId);
     assertEquals(tweets.size(), 2);
   }
-  
-  // service.createTweet(tweeters[2].id, tweets[4]); 
-  // service.createTweet(tweeters[2].id, tweets[5]); 
-  // GET     /api/tweeters/{id}/tweets/{tweetId}        TweetsAPI.getTweet
+
+  /**
+   * GET /api/tweeters/{id}/tweets/{tweetId} TweetsAPI.getTweet
+   */
   @Test
   public void getTweet() throws Exception
   {
