@@ -11,6 +11,8 @@ public class Tweeter
   public String lastName;
   public String email;
   public String password;
+  public String geolocation;
+  public Double zoom;
  
   public Tweeter()
   {
@@ -24,6 +26,8 @@ public class Tweeter
     this.lastName  = lastName;
     this.email     = email;
     this.password  = password;
+    geolocation    = "52.253456,-7.187162";
+    zoom           = 16.0;
   } 
   
   @Override
@@ -36,7 +40,9 @@ public class Tweeter
           && Objects.equal(firstName,  other.firstName) 
           && Objects.equal(lastName,   other.lastName)
           && Objects.equal(email,      other.email)
-          && Objects.equal(password,   other.password);                               
+          && Objects.equal(password,   other.password)
+          && Objects.equal(geolocation,other.geolocation)
+          && Objects.equal(zoom,       other.zoom);                               
     }
     else
     {
