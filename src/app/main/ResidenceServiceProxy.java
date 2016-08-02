@@ -14,6 +14,7 @@ import retrofit.http.Path;
 public interface ResidenceServiceProxy
 {
 
+  // Landlord
   @GET("/api/landlords")
   Call<List<Landlord>> getAllLandlords();
 
@@ -29,6 +30,20 @@ public interface ResidenceServiceProxy
   @DELETE("/api/landlords")
   Call<String> deleteAllLandlords();
 
+  
+  
+  // Residence
+  @POST("/api/residence")
+  Call<Residence> createResidence(@Body Residence residence);
+  
+  @DELETE("/api/residences/{id}")
+  Call<Residence> deleteResidence(@Path("id") String id);
+  
+  @POST("/api/residence{id}")
+  Call<Residence> updateResidence(@Path("id") String id);
+  
+  
+  
   @GET("/api/residences")
   Call<List<Residence>> getAllResidences();
 
@@ -46,4 +61,5 @@ public interface ResidenceServiceProxy
 
   @DELETE("/api/landlords/{id}/residences/{residenceId}")
   Call<String> deleteResidence(@Path("id") String id, @Path("residenceId") String residenceId);
+  
 }

@@ -55,7 +55,7 @@ public class ResidenceServiceAPI
     Response<String> val = call.execute();
     return val.code();
   }
-//================================================================
+
   public Landlord createLandlord(Landlord newLandlord) throws Exception
   {
     Call<Landlord> call = (Call<Landlord>) service.createLandlord(newLandlord);
@@ -74,9 +74,23 @@ public class ResidenceServiceAPI
   {
     Call<Residence> call = (Call<Residence>) service.getResidence(landlordId, residenceId);
     Response<Residence> residence = call.execute();
-    return residence.body(); 
-    
+    return residence.body();     
   }
+ 
+  public Residence createResidence(Residence newResidence) throws Exception
+  {
+	    Call<Residence> call = (Call<Residence>) service.createResidence(newResidence);
+	    Response<Residence> returnedResidence = call.execute();
+	    return returnedResidence.body();
+  }
+  
+//  public int deleteResidence(String id) throws Exception
+//  {
+//    Call<String> call = service.deleteResidence(id);
+//    Response<String> val = call.execute();
+//    return val.code();
+//  }
+  
   public List<Residence> getResidences(String id) throws Exception
   {
     Call<List<Residence>> call = (Call<List<Residence>>) service.getResidences(id);
