@@ -28,53 +28,11 @@ public class ResidenceServiceAPI
     service = retrofit.create(ResidenceServiceProxy.class);
   }
 
-  public List<Landlord> getAllLandlords() throws Exception
+  public List<Residence> getResidences() throws Exception
   {
-    Call<List<Landlord>> call = (Call<List<Landlord>>) service.getAllLandlords();
-    Response<List<Landlord>> landlords = call.execute();
-    return landlords.body();
-  }
-
-  public Landlord getLandlord(String id) throws Exception
-  {
-    Call<Landlord> call = (Call<Landlord>) service.getLandlord(id);
-    Response<Landlord> landlords = call.execute();
-    return landlords.body();
-  }
-
-  public int deleteLandlord(String id) throws Exception
-  {
-    Call<Landlord> call = service.deleteLandlord(id);
-    Response<Landlord> val = call.execute();
-    return val.code();
-  }
-
-  public int deleteAllLandlords() throws Exception
-  {
-    Call<String> call = service.deleteAllLandlords();
-    Response<String> val = call.execute();
-    return val.code();
-  }
-
-  public Landlord createLandlord(Landlord newLandlord) throws Exception
-  {
-    Call<Landlord> call = (Call<Landlord>) service.createLandlord(newLandlord);
-    Response<Landlord> returnedLandlord = call.execute();
-    return returnedLandlord.body();
-  }
-
-  public List<Residence> getAllResidences() throws Exception
-  {
-    Call<List<Residence>> call = (Call<List<Residence>>) service.getAllResidences();
+    Call<List<Residence>> call = (Call<List<Residence>>) service.getResidences();
     Response<List<Residence>> residences = call.execute();
     return residences.body();
-  }
-
-  public Residence getResidence(String landlordId, String residenceId) throws Exception
-  {
-    Call<Residence> call = (Call<Residence>) service.getResidence(landlordId, residenceId);
-    Response<Residence> residence = call.execute();
-    return residence.body();     
   }
  
   public Residence createResidence(Residence newResidence) throws Exception
@@ -84,38 +42,16 @@ public class ResidenceServiceAPI
 	    return returnedResidence.body();
   }
   
-//  public int deleteResidence(String id) throws Exception
-//  {
-//    Call<String> call = service.deleteResidence(id);
-//    Response<String> val = call.execute();
-//    return val.code();
-//  }
-  
-  public List<Residence> getResidences(String id) throws Exception
+  public int deleteResidence(String id) throws Exception
   {
-    Call<List<Residence>> call = (Call<List<Residence>>) service.getResidences(id);
-    Response<List<Residence>> residences = call.execute();
-    return residences.body();
-  }
-  
-  public Residence createResidence(String id, Residence newResidence) throws Exception
-  {
-    Call<Residence> call = (Call<Residence>) service.createResidence(id, newResidence);
-    Response<Residence> returnedResidence = call.execute();
-    return returnedResidence.body();
-  }
-
-  public int deleteResidence(String id, String residenceId) throws Exception
-  {
-    Call<String> call = service.deleteResidence(id, residenceId);
+    Call<String> call = service.deleteResidence(id);
     Response<String> val = call.execute();
     return val.code();
   }
 
-  public int deleteAllResidences() throws Exception
-  {
-    Call<String> call = service.deleteAllResidences();
-    Response<String> val = call.execute();
-    return val.code();
+  public Residence updateResidence(Residence residence) throws Exception {
+	  Call<Residence> call = (Call<Residence>)service.updateResidence(residence);
+	  Response<Residence> returnedResidence = call.execute();
+	  return returnedResidence.body();
   }
 }

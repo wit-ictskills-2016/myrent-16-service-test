@@ -13,163 +13,81 @@ import app.main.ResidenceServiceAPI;
 import app.models.Residence;
 import app.models.Landlord;
 
-
 /**
-Complete list api methods tested
-# Landlord (the user)
-GET     /api/landlords                              LandlordsAPI.getAllLandlords     
-GET     /api/landlords/{id}                         LandlordsAPI.getLandlord         
-POST    /api/landlords                              LandlordsAPI.createLandlord      
-DELETE  /api/landlords/{id}                         LandlordsAPI.deleteLandlord      
-DELETE  /api/landlords                              LandlordsAPI.deleteAllLandlords  
+ * Complete list api methods tested
+POST    /api/residence               ResidencesAPI.createResidence
+GET     /api/residences              ResidencesAPI.getAllResidences
+DELETE  /api/residences/{id}         ResidencesAPI.deleteResidence
+POST    /api/residence/update        ResidencesAPI.updateResidence
+ */
 
-# Residence
-GET     /api/residences                                ResidencesAPI.getAllResidences         
-DELETE  /api/residences                                ResidencesAPI.deleteAllResidences      
-GET     /api/landlords/{id}/residences                  ResidencesAPI.getResidences            
-GET     /api/landlords/{id}/residences/{residenceId}        ResidencesAPI.getResidence             
-POST    /api/landlords/{id}/residences                  ResidencesAPI.createResidence          
-DELETE  /api/landlords/{id}/residences/{residenceId}        ResidencesAPI.deleteResidence          
-*/
+public class ResidenceTest {
+	private static ResidenceServiceAPI service = new ResidenceServiceAPI();
 
-public class ResidenceTest
-{
-  private static ResidenceServiceAPI service = new ResidenceServiceAPI();
-  
-  private int NUMBER_landlords   = 4;
-  private int NUMBER_residences = 8;
-  
-  static Landlord landlords[] =
-  {
-    new Landlord("Homer", "Simpson"),
-    new Landlord("Marge", "Simpson"),
-    new Landlord("Bart", "Simpson"),
-    new Landlord("Lisa", "Simpson")
+	private int NUMBER_residences = 8;
 
-  };
-  
-  static Residence residences[] = 
-  {
-    new Residence(),
-    new Residence(),
-    new Residence(),
-    new Residence(),
-    new Residence(),
-    new Residence(),
-    new Residence(),
-    new Residence(),
+	static Residence residences[] = { new Residence(), new Residence(), new Residence(), new Residence(),
+			new Residence(), new Residence(), new Residence(), new Residence(),
 
-  };
-  
-  /**
-   * POST /api/landlords LandlordsAPI.createLandlord POST /api/residences
-   * LandlordsAPI.createResidence
-   */
-  @Before
-  public void setup() throws Exception
-  {
-    for (Landlord landlord : landlords)
-    {
-      service.createLandlord(landlord);
-    }
+	};
 
-    service.createResidence(landlords[0].id, residences[0]);
-    service.createResidence(landlords[0].id, residences[1]);
+    /**
+     * Create an array of residences.
+     * @throws Exception
+     */
+	@Before
+	public void setup() throws Exception {
+		service.createResidence(residences[0]);
+		service.createResidence(residences[1]);
+		service.createResidence(residences[2]);
+		service.createResidence(residences[3]);
+		service.createResidence(residences[4]);
+		service.createResidence(residences[5]);
+		service.createResidence(residences[6]);
+		service.createResidence(residences[7]);
+	}
 
-    service.createResidence(landlords[1].id, residences[2]);
-    service.createResidence(landlords[1].id, residences[3]);
+    /**
+     * Clean up following tests.
+     * @throws Exception
+     */
+	@After
+	public void teardown() throws Exception {
+		for (int i = 0; i < residences.length; i += 1) {
+		  service.deleteResidence(residences[i].id);
+		}
+	}
 
-    service.createResidence(landlords[2].id, residences[4]);
-    service.createResidence(landlords[2].id, residences[5]);
+	/**
+	 * Obtain entire collection of residences
+	 * @throws Exception
+	 */
+	@Test
+	public void getResidences() throws Exception {
+		List<Residence> residences = service.getResidences();
+		assertEquals(residences.size(), NUMBER_residences);
+	}
 
-    service.createResidence(landlords[3].id, residences[6]);
-    service.createResidence(landlords[3].id, residences[7]);
-  }
-
-  /**
-   * DELETE /api/residences ResidencesAPI.deleteAllResidences DELETE /api/landlords
-   * ResidencesAPI.deleteAllLandlordss
-   */
-  @After
-  public void teardown() throws Exception
-  {
-    service.deleteAllLandlords();
-    service.deleteAllResidences();
-  }
-
-  /**
-   * GET /api/landlords LandlordsAPI.getAllLandlords
-   */
-  @Test
-  public void getAllLandlords() throws Exception
-  {
-    List<Landlord> landlords = service.getAllLandlords();
-    assertEquals(landlords.size(), NUMBER_landlords);
-  }
-
-  /**
-   * GET /api/residences ResidencesAPI.getAllResidences
-   */
-  @Test
-  public void getAllResidences() throws Exception
-  {
-    List<Residence> residences = service.getAllResidences();
-    assertEquals(residences.size(), NUMBER_residences);
-  }
-
-  /**
-   * DELETE /api/landlords/{id} LandlordsAPI.deleteLandlord
-   */
-  @Test
-  public void deleteResidence() throws Exception
-  {
-    String residenceId = residences[0].id;
-    String landlordId = landlords[0].id;
-    int rval = service.deleteResidence(landlordId, residenceId);
-    assertEquals(rval, 200);
-  }
-
-  /**
-   * DELETE /api/landlords/{id} LandlordsAPI.deleteLandlord
-   */
-  @Test
-  public void deleteLandlord() throws Exception
-  {
-    int rval = service.deleteLandlord(landlords[0].id);
-    assertEquals(rval, 200);
-  }
-
-  /**
-   * GET /api/landlords/{id} LandlordsAPI.getLandlord
-   */
-  @Test
-  public void getLandlord() throws Exception
-  {
-    Landlord landlord = service.getLandlord(landlords[3].id);
-    assertEquals(landlord, landlords[3]);
-  }
-
-  /**
-   * GET /api/landlords/{id}/residences ResidencesAPI.getResidences
-   */
-  @Test
-  public void getResidences() throws Exception
-  {
-    String landlordId = landlords[1].id;
-    List<Residence> residences = service.getResidences(landlordId);
-    assertEquals(residences.size(), 2);
-  }
-
-  /**
-   * GET /api/landlords/{id}/residences/{residenceId} ResidencesAPI.getResidence
-   */
-  @Test
-  public void getResidence() throws Exception
-  {
-    String landlordId = landlords[2].id;
-    String residenceId = residences[5].id;
-    Residence residence = service.getResidence(landlordId, residenceId);
-    assertEquals(residences[5], residence);
-  }
+    /**
+     * Delete a single residence
+     * @throws Exception
+     */
+	@Test
+	public void deleteResidence() throws Exception {
+		String residenceId = residences[0].id;
+		int rval = service.deleteResidence(residenceId);
+		assertEquals(rval, 200);
+	}
+	
+	@Test
+	public void updateResidence() throws Exception {
+		Residence res = residences[3];
+		// Make some changes
+		res.photo = "Homer's portrait";
+		res.rented = true;
+		res.tenant = "Homer Simpson";
+		Residence returnedRes = service.updateResidence(res);
+		assertEquals(returnedRes, res);
+	}
 
 }
