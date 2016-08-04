@@ -54,7 +54,7 @@ public class ResidenceTest {
 	@After
 	public void teardown() throws Exception {
 		for (int i = 0; i < residences.length; i += 1) {
-		  service.deleteResidence(residences[i].id);
+		  service.deleteResidence(residences[i].uuid);
 		}
 	}
 
@@ -74,7 +74,7 @@ public class ResidenceTest {
      */
 	@Test
 	public void deleteResidence() throws Exception {
-		String residenceId = residences[0].id;
+		String residenceId = residences[0].uuid;
 		int rval = service.deleteResidence(residenceId);
 		assertEquals(rval, 200);
 	}

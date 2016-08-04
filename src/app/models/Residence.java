@@ -8,7 +8,7 @@ import com.google.common.base.Objects;
 public class Residence
 {
 
-	public String id;
+	public String uuid;
 	public String geolocation;
 	public Long date;
 	public boolean rented;
@@ -19,7 +19,7 @@ public class Residence
 
   public Residence()
   {
-    id = UUID.randomUUID().toString();
+    uuid = UUID.randomUUID().toString();
     date = new Date().getTime();
     geolocation = "";
     date = 0L;
@@ -30,7 +30,7 @@ public class Residence
 
   public Residence(Residence other)
   {
-	this.id = other.id;
+	this.uuid = other.uuid;
     this.date = other.date;
 	this.geolocation = other.geolocation;
 	this.date = other.date;
@@ -46,7 +46,7 @@ public class Residence
     if (obj instanceof Residence)
     {
       final Residence other = (Residence) obj;
-      return Objects.equal(id, other.id) 
+      return Objects.equal(uuid, other.uuid) 
           && Objects.equal(date, other.date)
           && Objects.equal(geolocation,  other.geolocation)
           && Objects.equal(rented,  other.rented)
