@@ -42,7 +42,7 @@ public class ResidenceServiceAPI
 	    return returnedResidence.body();
   }
   
-  public int deleteResidence(String id) throws Exception
+  public int deleteResidence(Long id) throws Exception
   {
     Call<String> call = service.deleteResidence(id);
     Response<String> val = call.execute();

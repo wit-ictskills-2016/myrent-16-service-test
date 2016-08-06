@@ -18,8 +18,8 @@ public interface ResidenceServiceProxy
   @POST("/api/residence")
   Call<Residence> createResidence(@Body Residence residence);
   
-  @DELETE("/api/residences/{uuid}")
-  Call<String> deleteResidence(@Path("uuid") String uuid);
+  @DELETE("/api/residences/{id}")
+  Call<String> deleteResidence(@Path("id") Long id);
   
   @POST("/api/residence/update")
   Call<Residence> updateResidence(@Body Residence residence);
