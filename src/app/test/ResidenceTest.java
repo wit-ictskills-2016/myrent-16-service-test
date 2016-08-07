@@ -11,8 +11,6 @@ import org.junit.Test;
 
 import app.main.ResidenceServiceAPI;
 import app.models.Residence;
-import app.models.Landlord;
-
 /**
  * Complete list api methods tested
 POST    /api/residence               ResidencesAPI.createResidence

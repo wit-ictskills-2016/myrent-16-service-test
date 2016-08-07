@@ -6,7 +6,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import app.models.Residence;
-import app.models.Landlord;
 import retrofit.Call;
 import retrofit.GsonConverterFactory;
 import retrofit.Response;
