@@ -34,6 +34,13 @@ public class ResidenceServiceAPI
     return residences.body();
   }
  
+  public Residence getResidence(Long id) throws Exception
+  {
+    Call<Residence> call = service.getResidence(id);
+    Response<Residence> residence = call.execute();
+    return residence.body();
+  }
+  
   public Residence createResidence(Residence newResidence) throws Exception
   {
 	    Call<Residence> call = (Call<Residence>) service.createResidence(newResidence);

@@ -14,7 +14,8 @@ import app.models.Residence;
 /**
  * Complete list api methods tested
 POST    /api/residence               ResidencesAPI.createResidence
-GET     /api/residences              ResidencesAPI.getAllResidences
+GET     /api/residences              ResidencesAPI.getResidences
+GET     /api/residences/{id}         ResidencesAPI.getResidence
 DELETE  /api/residences/{id}         ResidencesAPI.deleteResidence
 POST    /api/residence/update        ResidencesAPI.updateResidence
  */
@@ -66,6 +67,16 @@ public class ResidenceTest {
 		assertEquals(residences.size(), NUMBER_residences);
 	}
 
+	 /**
+   * Check the getResidence api
+   * @throws Exception
+   */
+  @Test
+  public void getResidence() throws Exception {
+    Residence residence = service.getResidence(residences[0].id);
+    assertEquals(residence.id, residences[0].id);
+  }
+  
     /**
      * Delete a single residence
      * @throws Exception

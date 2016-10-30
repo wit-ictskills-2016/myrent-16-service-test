@@ -27,4 +27,6 @@ public interface ResidenceServiceProxy
   @GET("/api/residences")
   Call<List<Residence>> getResidences();
   
+  @GET("/api/residences/{id}")
+  Call<Residence> getResidence(@Path("id") Long id);
 }
