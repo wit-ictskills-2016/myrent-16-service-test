@@ -28,17 +28,6 @@ public class Residence
     photo = "";
   }
 
-  public Residence(Residence other)
-  {
-    id = other.id;
-    geolocation = other.geolocation;
-    date = other.date;
-    rented = other.rented;
-    tenant = other.tenant;
-    zoom = other.zoom;
-    photo = other.photo;
-  }
-
   /**
    * Generate a long greater than zero
    * 
@@ -56,12 +45,12 @@ public class Residence
     if (obj instanceof Residence)  {
       final Residence other = (Residence) obj;
       return Objects.equal(id, other.id) 
-          && Objects.equal(geolocation,  other.geolocation)
+          && Objects.equal(geolocation, other.geolocation)
           && Objects.equal(date, other.date)
-          && Objects.equal(rented,  other.rented)
-          && Objects.equal(tenant,  other.tenant)
+          && Objects.equal(rented, other.rented)
+          && Objects.equal(tenant, other.tenant)
           && Objects.equal(zoom, other.zoom)
-          && Objects.equal(photo,  other.photo);
+          && Objects.equal(photo, other.photo);
     }
     return false;
   }
