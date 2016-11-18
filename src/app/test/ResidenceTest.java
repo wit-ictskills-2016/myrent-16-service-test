@@ -23,27 +23,37 @@ POST    /api/residence/update        ResidencesAPI.updateResidence
 public class ResidenceTest {
 	private static ResidenceServiceAPI service = new ResidenceServiceAPI();
 
-	private int NUMBER_residences = 8;
+	private int NUMBER_RESIDENCES = 8;
 
-	static Residence residences[] = { new Residence(), new Residence(), new Residence(), new Residence(),
-			new Residence(), new Residence(), new Residence(), new Residence(),
+	static Residence residences[] = { 
+			new Residence(), 
+			new Residence(), 
+			new Residence(), 
+			new Residence(),
+			new Residence(), 
+			new Residence(), 
+			new Residence(), 
+			new Residence(),
 
 	};
 
     /**
-     * Create an array of residences.
+     * Set up for test.
+     * Create an array of residences on server.
+     * Server echos back each individual residence as it is created.
+     * The server model generates the residence id.
+     * Obtain this from the reflected back residence and apply 
+     * to ResidenceTest.residences fields.
+     * 
      * @throws Exception
      */
 	@Before
 	public void setup() throws Exception {
-		service.createResidence(residences[0]);
-		service.createResidence(residences[1]);
-		service.createResidence(residences[2]);
-		service.createResidence(residences[3]);
-		service.createResidence(residences[4]);
-		service.createResidence(residences[5]);
-		service.createResidence(residences[6]);
-		service.createResidence(residences[7]);
+
+		for (int i = 0; i < NUMBER_RESIDENCES; i += 1) {
+			Residence res = service.createResidence(residences[i]);
+			residences[i].id = res.id;
+		}
 	}
 
     /**
@@ -63,8 +73,8 @@ public class ResidenceTest {
 	 */
 	@Test
 	public void getResidences() throws Exception {
-		List<Residence> residences = service.getResidences();
-		assertEquals(residences.size(), NUMBER_residences);
+		List<Residence> list = service.getResidences();
+		assertEquals(list.size(), NUMBER_RESIDENCES);
 	}
 
 	 /**
@@ -88,6 +98,10 @@ public class ResidenceTest {
 		assertEquals(rval, 200);
 	}
 	
+	/**
+	 * Update a residence on the server.
+	 * @throws Exception
+	 */
 	@Test
 	public void updateResidence() throws Exception {
 		Residence res = residences[3];

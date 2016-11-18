@@ -19,7 +19,6 @@ public class Residence
 
   public Residence()
   {
-    id = unsignedLong();
     date = new Date().getTime();
     geolocation = "";
     date = 0L;
@@ -28,18 +27,6 @@ public class Residence
     photo = "";
   }
 
-  /**
-   * Generate a long greater than zero
-   * 
-   * @return Unsigned Long value greater than zero
-   */
-  private Long unsignedLong() {
-    long rndVal = 0;
-    do {
-      rndVal = new Random().nextLong();
-    } while (rndVal <= 0);
-    return rndVal;
-  }
   @Override
   public boolean equals(final Object obj)  {
     if (obj instanceof Residence)  {
