@@ -2,7 +2,7 @@
 .*
 # except for .gitignore
 !.gitignore
-
+!.project
 
 # Ignore Play! working directory #
 war
